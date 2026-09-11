@@ -1,5 +1,31 @@
 function isValidEmail(email) {
-  return typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (typeof email !== 'string') {
+    return false;
+  }
+
+  if (email.includes(' ')) {
+    return false;
+  }
+
+  const parts = email.split('@');
+  if (parts.length !== 2) {
+    return false;
+  }
+
+  const [localPart, domainPart] = parts;
+  if (!localPart || !domainPart) {
+    return false;
+  }
+
+  if (!domainPart.includes('.')) {
+    return false;
+  }
+
+  if (domainPart.startsWith('.') || domainPart.endsWith('.')) {
+    return false;
+  }
+
+  return true;
 }
 
 function isNonEmptyString(value) {
