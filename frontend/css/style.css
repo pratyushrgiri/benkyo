@@ -1,0 +1,123 @@
+:root {
+  --background: #f5f6f8;
+  --surface: #ffffff;
+  --text: #1f2328;
+  --muted: #59636e;
+  --border: #d0d7de;
+  --accent: #2f81f7;
+  --success: #1a7f37;
+}
+
+:root[data-theme='dark'] {
+  --background: #0d1117;
+  --surface: #161b22;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --border: #30363d;
+  --accent: #2f81f7;
+  --success: #3fb950;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme='system'] {
+    --background: #0d1117;
+    --surface: #161b22;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --border: #30363d;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background: var(--background);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
+
+.top-bar {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+section,
+.auth-card,
+.settings-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.55rem 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--text);
+}
+
+.message {
+  color: var(--muted);
+  min-height: 1.2rem;
+}

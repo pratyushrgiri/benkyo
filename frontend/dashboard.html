@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Benkyo</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/timer.css" />
+    <script src="/js/api.js" defer></script>
+    <script src="/js/theme.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/timer.js" defer></script>
+    <script src="/js/dashboard.js" defer></script>
+  </head>
+  <body>
+    <header class="top-bar">
+      <h1>Benkyo</h1>
+      <nav>
+        <a href="/history.html">History</a>
+        <a href="/settings.html">Settings</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <p id="welcome">Hello.</p>
+        <h2><span id="current-streak">0</span> day streak 🔥</h2>
+        <p class="focus-today"><span id="today-focus">0m</span> focused today</p>
+      </section>
+
+      <section class="timer-card">
+        <label>
+          Subject
+          <select id="subject-select"></select>
+        </label>
+        <div id="timer-display" class="timer-display">25:00</div>
+        <p id="timer-mode">Focus</p>
+        <div class="timer-buttons">
+          <button id="start-btn">Start</button>
+          <button id="pause-btn" disabled>Pause</button>
+          <button id="resume-btn" disabled>Resume</button>
+          <button id="stop-btn" disabled>Stop</button>
+        </div>
+        <div class="timer-buttons secondary">
+          <button id="start-break-btn" disabled>Start Break</button>
+          <button id="skip-break-btn" disabled>Skip Break</button>
+        </div>
+      </section>
+
+      <section class="progress-card">
+        <h3>Today's Goal</h3>
+        <p id="goal-text">0m / 0m</p>
+        <div class="progress-bar"><div id="goal-progress" class="progress-fill"></div></div>
+        <p id="motivation"></p>
+      </section>
+
+      <section class="activity-card">
+        <h3>Activity</h3>
+        <div id="activity-graph" class="activity-graph"></div>
+      </section>
+
+      <section class="stats-card">
+        <h3>Stats</h3>
+        <ul>
+          <li>Total focus: <span id="total-focus">0m</span></li>
+          <li>Completed sessions: <span id="total-sessions">0</span></li>
+          <li>Longest streak: <span id="longest-streak">0</span></li>
+          <li>Most studied subject: <span id="most-subject">-</span></li>
+        </ul>
+      </section>
+
+      <section class="achievements-card">
+        <h3>Achievements</h3>
+        <ul id="achievements-list"></ul>
+      </section>
+    </main>
+  </body>
+</html>

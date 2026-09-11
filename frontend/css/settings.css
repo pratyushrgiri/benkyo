@@ -1,0 +1,20 @@
+.settings-form .actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.settings-form input[type='checkbox'] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+#subject-list {
+  list-style: none;
+  padding: 0;
+}
+
+#subject-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+}

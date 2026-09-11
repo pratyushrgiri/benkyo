@@ -1,0 +1,21 @@
+.timer-display {
+  font-size: clamp(2rem, 8vw, 4rem);
+  text-align: center;
+  letter-spacing: 2px;
+  margin: 1rem 0;
+}
+
+.timer-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.timer-buttons button {
+  flex: 1;
+  min-width: 120px;
+}
+
+.secondary {
+  margin-top: 0.5rem;
+}

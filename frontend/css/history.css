@@ -1,0 +1,15 @@
+.history-day {
+  margin-bottom: 1rem;
+}
+
+.session-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding: 0.45rem 0;
+}
+
+.session-row small {
+  color: var(--muted);
+  display: block;
+}

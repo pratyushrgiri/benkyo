@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - Benkyo</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/settings.css" />
+    <script src="/js/api.js" defer></script>
+    <script src="/js/theme.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/settings.js" defer></script>
+  </head>
+  <body>
+    <header class="top-bar">
+      <h1>Settings</h1>
+      <nav>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/history.html">History</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <form id="settings-form" class="settings-form">
+        <h2>Timer</h2>
+        <label>Focus duration (minutes) <input type="number" name="focusMinutes" min="1" required /></label>
+        <label>Short break (minutes) <input type="number" name="shortBreakMinutes" min="1" required /></label>
+        <label>Long break (minutes) <input type="number" name="longBreakMinutes" min="1" required /></label>
+        <label>Sessions before long break <input type="number" name="sessionsBeforeLongBreak" min="1" required /></label>
+
+        <h2>Daily Goal</h2>
+        <label>Daily focus goal (minutes) <input type="number" name="dailyGoalMinutes" min="1" required /></label>
+
+        <h2>Sound</h2>
+        <label><input type="checkbox" name="timerCompletion" /> Timer completion sound</label>
+        <label><input type="checkbox" name="breakCompletion" /> Break completion sound</label>
+        <label><input type="checkbox" name="buttonSounds" /> Button sounds</label>
+        <label>Volume <input type="range" name="volume" min="0" max="100" /></label>
+
+        <h2>Appearance</h2>
+        <label>Theme
+          <select name="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system">System</option>
+          </select>
+        </label>
+
+        <h2>Account</h2>
+        <label>Username <input type="text" name="username" /></label>
+        <label>Email <input type="email" name="email" /></label>
+
+        <h2>Subjects</h2>
+        <label>New subject <input type="text" name="newSubject" /></label>
+        <button id="add-subject-btn" type="button">Add subject</button>
+        <ul id="subject-list"></ul>
+
+        <div class="actions">
+          <button type="submit">Save settings</button>
+          <button id="logout-btn" type="button">Logout</button>
+        </div>
+      </form>
+      <p id="settings-message" class="message"></p>
+    </main>
+  </body>
+</html>
