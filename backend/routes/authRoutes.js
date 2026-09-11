@@ -8,7 +8,7 @@ const authRateLimit = createSimpleRateLimit({ windowMs: 60 * 1000, max: 20 });
 
 router.post('/register', authRateLimit, register);
 router.post('/login', authRateLimit, login);
-router.post('/logout', authMiddleware, logout);
-router.get('/me', authMiddleware, me);
+router.post('/logout', authRateLimit, authMiddleware, logout);
+router.get('/me', authRateLimit, authMiddleware, me);
 
 module.exports = router;
