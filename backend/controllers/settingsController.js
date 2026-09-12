@@ -1,4 +1,4 @@
-const { getSettings, updateSettings } = require('../services/settingsService');
+const { getSettings, updateSettings } = require("../services/settingsService");
 
 async function fetchSettings(req, res) {
   const settings = await getSettings(req.user.id);

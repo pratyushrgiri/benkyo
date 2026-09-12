@@ -1,10 +1,10 @@
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-const { readData, writeData } = require('../utils/fileStore');
-const { isNonEmptyString } = require('../utils/validation');
+const path = require("path");
+const { v4: uuidv4 } = require("uuid");
+const { readData, writeData } = require("../utils/fileStore");
+const { isNonEmptyString } = require("../utils/validation");
 
-const dataDir = path.resolve(process.cwd(), process.env.DATA_DIR || './data');
-const subjectsPath = path.join(dataDir, 'subjects.json');
+const dataDir = path.resolve(process.cwd(), process.env.DATA_DIR || "./data");
+const subjectsPath = path.join(dataDir, "subjects.json");
 
 async function getSubjects() {
   return readData(subjectsPath, []);
@@ -17,17 +17,19 @@ async function listSubjects(userId) {
 
 async function createSubject(userId, name) {
   if (!isNonEmptyString(name)) {
-    return { error: 'Subject name is required.' };
+    return { error: "Subject name is required." };
   }
 
   const subjects = await getSubjects();
   const trimmedName = name.trim();
   const exists = subjects.some(
-    (subject) => subject.userId === userId && subject.name.toLowerCase() === trimmedName.toLowerCase(),
+    (subject) =>
+      subject.userId === userId &&
+      subject.name.toLowerCase() === trimmedName.toLowerCase(),
   );
 
   if (exists) {
-    return { error: 'Subject already exists.' };
+    return { error: "Subject already exists." };
   }
 
   const subject = {
@@ -45,7 +47,9 @@ async function createSubject(userId, name) {
 
 async function deleteSubject(userId, subjectId) {
   const subjects = await getSubjects();
-  const index = subjects.findIndex((subject) => subject.id === subjectId && subject.userId === userId);
+  const index = subjects.findIndex(
+    (subject) => subject.id === subjectId && subject.userId === userId,
+  );
 
   if (index === -1) {
     return false;
@@ -58,7 +62,9 @@ async function deleteSubject(userId, subjectId) {
 
 async function findSubject(userId, subjectId) {
   const subjects = await getSubjects();
-  return subjects.find((subject) => subject.id === subjectId && subject.userId === userId);
+  return subjects.find(
+    (subject) => subject.id === subjectId && subject.userId === userId,
+  );
 }
 
 module.exports = {

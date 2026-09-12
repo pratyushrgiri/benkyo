@@ -1,4 +1,8 @@
-const { listSubjects, createSubject, deleteSubject } = require('../services/subjectService');
+const {
+  listSubjects,
+  createSubject,
+  deleteSubject,
+} = require("../services/subjectService");
 
 async function getSubjects(req, res) {
   const subjects = await listSubjects(req.user.id);
@@ -17,10 +21,10 @@ async function addSubject(req, res) {
 async function removeSubject(req, res) {
   const deleted = await deleteSubject(req.user.id, req.params.id);
   if (!deleted) {
-    return res.status(404).json({ message: 'Subject not found.' });
+    return res.status(404).json({ message: "Subject not found." });
   }
 
-  return res.json({ message: 'Subject deleted.' });
+  return res.json({ message: "Subject deleted." });
 }
 
 module.exports = {

@@ -1,20 +1,81 @@
-.settings-form .actions {
-  display: flex;
-  gap: 0.75rem;
+.settings-form h2 {
+  font-size: var(--text-2xl);
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--thick);
 }
 
-.settings-form input[type='checkbox'] {
-  width: auto;
-  margin-right: 0.5rem;
+.settings-form h2:first-child {
+  margin-top: 0;
+}
+
+.settings-form .actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.settings-form .actions button {
+  flex: 1;
+}
+
+.settings-form label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--foreground);
+}
+
+.settings-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.65rem;
+  accent-color: var(--foreground);
+}
+
+.settings-form input[type="range"] {
+  accent-color: var(--foreground);
 }
 
 #subject-list {
   list-style: none;
   padding: 0;
+  margin: 0.5rem 0 0;
 }
 
 #subject-list li {
   display: flex;
   justify-content: space-between;
-  padding: 0.3rem 0;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: var(--hairline);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--foreground);
+}
+
+#subject-list li:last-child {
+  border-bottom: none;
+}
+
+#subject-list .icon-btn {
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0.5rem;
+}
+
+#add-subject-btn {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.settings-form .actions .icon-btn {
+  flex-direction: row;
+  gap: 0.6rem;
 }

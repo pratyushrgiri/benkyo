@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "userId": "user_360cf7e6-bfd5-4107-ab43-ac47840e5197",
+    "timer": {
+      "focusMinutes": 25,
+      "shortBreakMinutes": 5,
+      "longBreakMinutes": 15,
+      "sessionsBeforeLongBreak": 4
+    },
+    "dailyGoalMinutes": 120,
+    "sound": {
+      "timerCompletion": true,
+      "breakCompletion": true,
+      "buttonSounds": true,
+      "volume": 74
+    },
+    "appearance": {
+      "theme": "light"
+    },
+    "updatedAt": "2026-09-12T07:16:24.534Z"
+  }
+]

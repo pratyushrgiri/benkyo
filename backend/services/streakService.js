@@ -3,7 +3,9 @@ function toDayKey(isoDate) {
 }
 
 function calculateStreakInfo(sessions) {
-  const uniqueDays = [...new Set(sessions.map((session) => toDayKey(session.completedAt)))].sort();
+  const uniqueDays = [
+    ...new Set(sessions.map((session) => toDayKey(session.completedAt))),
+  ].sort();
 
   if (uniqueDays.length === 0) {
     return { currentStreak: 0, longestStreak: 0 };

@@ -1,5 +1,9 @@
-const { createCompletedSession, listUserSessions, getUserSessionById } = require('../services/sessionService');
-const { findSubject } = require('../services/subjectService');
+const {
+  createCompletedSession,
+  listUserSessions,
+  getUserSessionById,
+} = require("../services/sessionService");
+const { findSubject } = require("../services/subjectService");
 
 async function getSessions(req, res) {
   const sessions = await listUserSessions(req.user.id);
@@ -9,7 +13,7 @@ async function getSessions(req, res) {
 async function getSession(req, res) {
   const session = await getUserSessionById(req.user.id, req.params.id);
   if (!session) {
-    return res.status(404).json({ message: 'Session not found.' });
+    return res.status(404).json({ message: "Session not found." });
   }
 
   return res.json({ session });
@@ -21,7 +25,7 @@ async function createSession(req, res) {
   if (payload.subjectId) {
     const subject = await findSubject(req.user.id, payload.subjectId);
     if (!subject) {
-      return res.status(404).json({ message: 'Subject not found.' });
+      return res.status(404).json({ message: "Subject not found." });
     }
     payload.subjectName = subject.name;
   }

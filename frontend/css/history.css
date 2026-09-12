@@ -1,15 +1,68 @@
+.history-list section:first-child {
+  border-top: none;
+}
+
 .history-day {
+  border: none;
+  border-bottom: var(--thick);
+  padding: 0 0 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0;
+  background: transparent;
+}
+
+.history-day:last-child {
+  border-bottom: none;
+}
+
+.history-day h2 {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted-foreground);
   margin-bottom: 1rem;
 }
 
 .session-row {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  padding: 0.45rem 0;
+  align-items: baseline;
+  border-bottom: var(--hairline);
+  padding: 0.85rem 0;
+}
+
+.session-row:last-child {
+  border-bottom: none;
+}
+
+.session-row > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.session-row strong {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
 }
 
 .session-row small {
-  color: var(--muted);
-  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted-foreground);
+  letter-spacing: 0.04em;
+}
+
+.session-row > div:last-child {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  font-variant-numeric: tabular-nums;
+}
+
+#history-list > p {
+  font-style: italic;
+  color: var(--muted-foreground);
 }

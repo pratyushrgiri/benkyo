@@ -1,0 +1,94 @@
+.timer-card {
+  text-align: center;
+}
+
+.timer-card label {
+  text-align: left;
+}
+
+#timer-mode {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+  margin-top: -0.5rem;
+}
+
+#subject-select {
+  border-bottom: var(--medium);
+}
+
+.timer-display {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(3.5rem, 16vw, 7rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 1.5rem 0;
+  line-height: 1;
+}
+
+.timer-buttons {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timer-buttons .icon-btn {
+  flex: 1;
+  min-width: 90px;
+}
+
+.timer-buttons.secondary {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: var(--hairline);
+}
+
+/* Daily goal --------------------------------------------------------- */
+
+.progress-card h3 {
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+#goal-text {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  margin-bottom: 0.75rem;
+}
+
+.progress-bar {
+  width: 100%;
+  border: var(--thin);
+  height: 10px;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--foreground);
+  transition: width 300ms ease;
+}
+
+#motivation {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-style: italic;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 600px) {
+  .timer-buttons .icon-btn {
+    min-width: 72px;
+  }
+}

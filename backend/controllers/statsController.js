@@ -1,5 +1,9 @@
-const { listUserSessions, buildActivity, buildStats } = require('../services/sessionService');
-const { getSettings } = require('../services/settingsService');
+const {
+  listUserSessions,
+  buildActivity,
+  buildStats,
+} = require("../services/sessionService");
+const { getSettings } = require("../services/settingsService");
 
 function pickMessage(stats, goalMinutes) {
   const remaining = goalMinutes - stats.todayFocusMinutes;
@@ -9,7 +13,7 @@ function pickMessage(stats, goalMinutes) {
   }
 
   if (remaining <= 0) {
-    return 'Daily goal complete. Nice work.';
+    return "Daily goal complete. Nice work.";
   }
 
   if (remaining <= 20) {
@@ -31,7 +35,10 @@ async function getStats(req, res) {
   return res.json({
     ...stats,
     dailyGoalMinutes: settings.dailyGoalMinutes,
-    goalProgressPercent: Math.min(100, Math.round((stats.todayFocusMinutes / settings.dailyGoalMinutes) * 100)),
+    goalProgressPercent: Math.min(
+      100,
+      Math.round((stats.todayFocusMinutes / settings.dailyGoalMinutes) * 100),
+    ),
     motivationMessage: pickMessage(stats, settings.dailyGoalMinutes),
   });
 }

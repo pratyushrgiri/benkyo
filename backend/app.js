@@ -21,13 +21,13 @@ const allowedOrigins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5500')
 
 app.use(
   cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error('CORS origin not allowed'));
-    },
-    credentials: false,
+    // origin(origin, callback) {
+    //   if (!origin || allowedOrigins.includes(origin)) {
+    //     return callback(null, true);
+    //   }
+    //   return callback(new Error('CORS origin not allowed'));
+    // },
+    // credentials: false,
   }),
 );
 

@@ -1,11 +1,11 @@
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-const { readData, writeData } = require('../utils/fileStore');
-const { toPositiveInt } = require('../utils/validation');
-const { calculateStreakInfo, toDayKey } = require('./streakService');
+const path = require("path");
+const { v4: uuidv4 } = require("uuid");
+const { readData, writeData } = require("../utils/fileStore");
+const { toPositiveInt } = require("../utils/validation");
+const { calculateStreakInfo, toDayKey } = require("./streakService");
 
-const dataDir = path.resolve(process.cwd(), process.env.DATA_DIR || './data');
-const sessionsPath = path.join(dataDir, 'sessions.json');
+const dataDir = path.resolve(process.cwd(), process.env.DATA_DIR || "./data");
+const sessionsPath = path.join(dataDir, "sessions.json");
 
 async function getSessions() {
   return readData(sessionsPath, []);
@@ -14,7 +14,12 @@ async function getSessions() {
 async function listUserSessions(userId) {
   const sessions = await getSessions();
   return sessions
-    .filter((session) => session.userId === userId && session.type === 'focus' && session.status === 'completed')
+    .filter(
+      (session) =>
+        session.userId === userId &&
+        session.type === "focus" &&
+        session.status === "completed",
+    )
     .sort((a, b) => new Date(b.completedAt) - new Date(a.completedAt));
 }
 
@@ -26,22 +31,23 @@ async function getUserSessionById(userId, sessionId) {
 async function createCompletedSession(userId, payload) {
   const durationMinutes = toPositiveInt(payload.durationMinutes, 0);
   if (!durationMinutes) {
-    return { error: 'A valid duration is required.' };
+    return { error: "A valid duration is required." };
   }
 
-  if (payload.status && payload.status !== 'completed') {
-    return { error: 'Only completed sessions can be stored.' };
+  if (payload.status && payload.status !== "completed") {
+    return { error: "Only completed sessions can be stored." };
   }
 
   const session = {
     id: `ses_${uuidv4()}`,
     userId,
     subjectId: payload.subjectId || null,
-    subjectName: payload.subjectName || 'General Study',
+    subjectName: payload.subjectName || "General Study",
     durationMinutes,
-    note: typeof payload.note === 'string' ? payload.note.trim().slice(0, 280) : '',
-    status: 'completed',
-    type: 'focus',
+    note:
+      typeof payload.note === "string" ? payload.note.trim().slice(0, 280) : "",
+    status: "completed",
+    type: "focus",
     completedAt: payload.completedAt || new Date().toISOString(),
     createdAt: new Date().toISOString(),
   };
@@ -84,7 +90,9 @@ function getWeekRange() {
   const now = new Date();
   const day = now.getUTCDay();
   const diff = day === 0 ? 6 : day - 1;
-  const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const start = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
+  );
   start.setUTCDate(start.getUTCDate() - diff);
   const end = new Date(start);
   end.setUTCDate(start.getUTCDate() + 7);
@@ -92,7 +100,10 @@ function getWeekRange() {
 }
 
 function buildStats(sessions) {
-  const totalFocusMinutes = sessions.reduce((sum, session) => sum + session.durationMinutes, 0);
+  const totalFocusMinutes = sessions.reduce(
+    (sum, session) => sum + session.durationMinutes,
+    0,
+  );
   const completedSessions = sessions.length;
   const todayKey = new Date().toISOString().slice(0, 10);
   const todayFocusMinutes = sessions
@@ -103,8 +114,11 @@ function buildStats(sessions) {
 
   const subjectTotals = new Map();
   for (const session of sessions) {
-    const key = session.subjectName || 'General Study';
-    subjectTotals.set(key, (subjectTotals.get(key) || 0) + session.durationMinutes);
+    const key = session.subjectName || "General Study";
+    subjectTotals.set(
+      key,
+      (subjectTotals.get(key) || 0) + session.durationMinutes,
+    );
   }
 
   let mostStudiedSubject = null;
@@ -120,7 +134,10 @@ function buildStats(sessions) {
     return date >= start && date < end;
   });
 
-  const weeklyMinutes = weeklySessions.reduce((sum, session) => sum + session.durationMinutes, 0);
+  const weeklyMinutes = weeklySessions.reduce(
+    (sum, session) => sum + session.durationMinutes,
+    0,
+  );
   const weeklyCount = weeklySessions.length;
 
   const byDay = buildActivity(sessions);
@@ -130,39 +147,40 @@ function buildStats(sessions) {
   );
 
   const longestFocusSession = sessions.reduce(
-    (best, session) => (session.durationMinutes > (best?.durationMinutes || 0) ? session : best),
+    (best, session) =>
+      session.durationMinutes > (best?.durationMinutes || 0) ? session : best,
     null,
   );
 
   const achievements = [
     {
-      key: 'first_focus',
-      name: 'First Focus',
-      description: 'Complete your first focus session.',
+      key: "first_focus",
+      name: "First Focus",
+      description: "Complete your first focus session.",
       unlocked: completedSessions >= 1,
     },
     {
-      key: 'week_warrior',
-      name: 'Week Warrior',
-      description: 'Reach a 7-day streak.',
+      key: "week_warrior",
+      name: "Week Warrior",
+      description: "Reach a 7-day streak.",
       unlocked: longestStreak >= 7,
     },
     {
-      key: 'dedicated',
-      name: 'Dedicated',
-      description: 'Complete 100 focus sessions.',
+      key: "dedicated",
+      name: "Dedicated",
+      description: "Complete 100 focus sessions.",
       unlocked: completedSessions >= 100,
     },
     {
-      key: 'ten_hours',
-      name: 'Ten Hours',
-      description: 'Reach 10 total hours of focus.',
+      key: "ten_hours",
+      name: "Ten Hours",
+      description: "Reach 10 total hours of focus.",
       unlocked: totalFocusMinutes >= 600,
     },
     {
-      key: 'new_record',
-      name: 'New Record',
-      description: 'Beat your previous longest streak.',
+      key: "new_record",
+      name: "New Record",
+      description: "Beat your previous longest streak.",
       unlocked: currentStreak > 0 && currentStreak === longestStreak,
     },
   ];
@@ -176,7 +194,9 @@ function buildStats(sessions) {
     weekly: {
       focusMinutes: weeklyMinutes,
       sessions: weeklyCount,
-      averageSessionMinutes: weeklyCount ? Math.round(weeklyMinutes / weeklyCount) : 0,
+      averageSessionMinutes: weeklyCount
+        ? Math.round(weeklyMinutes / weeklyCount)
+        : 0,
     },
     mostStudiedSubject,
     records: {

@@ -17,13 +17,20 @@
       const li = document.createElement('li');
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
-      removeBtn.textContent = 'Delete';
+      removeBtn.className = 'icon-btn icon-only';
+      removeBtn.setAttribute('aria-label', `Delete ${subject.name}`);
+      removeBtn.title = 'Delete';
+      removeBtn.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M7 7l1 13a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-13"/></svg>';
       removeBtn.addEventListener('click', async () => {
         await window.api.request(`/api/subjects/${subject.id}`, { method: 'DELETE' });
         await renderSubjects();
       });
 
-      li.textContent = subject.name + ' ';
+      const name = document.createElement('span');
+      name.textContent = subject.name;
+
+      li.appendChild(name);
       li.appendChild(removeBtn);
       subjectList.appendChild(li);
     }
@@ -41,12 +48,9 @@
     form.breakCompletion.checked = settings.sound.breakCompletion;
     form.buttonSounds.checked = settings.sound.buttonSounds;
     form.volume.value = settings.sound.volume;
-    form.theme.value = settings.appearance.theme;
 
     form.username.value = user.username;
     form.email.value = user.email;
-
-    window.applyTheme(settings.appearance.theme);
   }
 
   form.addEventListener('submit', async (event) => {
@@ -70,7 +74,7 @@
             volume: Number(form.volume.value),
           },
           appearance: {
-            theme: form.theme.value,
+            theme: 'light',
           },
         }),
       });
@@ -99,7 +103,6 @@
         }),
       });
 
-      window.applyTheme(form.theme.value);
       message.textContent = 'Settings saved.';
     } catch (error) {
       message.textContent = error.message;

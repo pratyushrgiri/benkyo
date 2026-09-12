@@ -1,9 +1,9 @@
-const path = require('path');
-const { readData, writeData } = require('../utils/fileStore');
-const { toPositiveInt, toBoundedNumber } = require('../utils/validation');
+const path = require("path");
+const { readData, writeData } = require("../utils/fileStore");
+const { toPositiveInt, toBoundedNumber } = require("../utils/validation");
 
-const dataDir = path.resolve(process.cwd(), process.env.DATA_DIR || './data');
-const settingsPath = path.join(dataDir, 'settings.json');
+const dataDir = path.resolve(process.cwd(), process.env.DATA_DIR || "./data");
+const settingsPath = path.join(dataDir, "settings.json");
 
 function defaultSettings(userId) {
   return {
@@ -22,7 +22,7 @@ function defaultSettings(userId) {
       volume: 70,
     },
     appearance: {
-      theme: 'system',
+      theme: "system",
     },
     updatedAt: new Date().toISOString(),
   };
@@ -71,20 +71,34 @@ async function updateSettings(userId, updates) {
         : current.dailyGoalMinutes,
   };
 
-  next.timer.focusMinutes = toPositiveInt(next.timer.focusMinutes, current.timer.focusMinutes);
-  next.timer.shortBreakMinutes = toPositiveInt(next.timer.shortBreakMinutes, current.timer.shortBreakMinutes);
-  next.timer.longBreakMinutes = toPositiveInt(next.timer.longBreakMinutes, current.timer.longBreakMinutes);
+  next.timer.focusMinutes = toPositiveInt(
+    next.timer.focusMinutes,
+    current.timer.focusMinutes,
+  );
+  next.timer.shortBreakMinutes = toPositiveInt(
+    next.timer.shortBreakMinutes,
+    current.timer.shortBreakMinutes,
+  );
+  next.timer.longBreakMinutes = toPositiveInt(
+    next.timer.longBreakMinutes,
+    current.timer.longBreakMinutes,
+  );
   next.timer.sessionsBeforeLongBreak = toPositiveInt(
     next.timer.sessionsBeforeLongBreak,
     current.timer.sessionsBeforeLongBreak,
   );
 
-  next.sound.volume = toBoundedNumber(next.sound.volume, 0, 100, current.sound.volume);
+  next.sound.volume = toBoundedNumber(
+    next.sound.volume,
+    0,
+    100,
+    current.sound.volume,
+  );
   next.sound.timerCompletion = Boolean(next.sound.timerCompletion);
   next.sound.breakCompletion = Boolean(next.sound.breakCompletion);
   next.sound.buttonSounds = Boolean(next.sound.buttonSounds);
 
-  if (!['light', 'dark', 'system'].includes(next.appearance.theme)) {
+  if (!["light", "dark", "system"].includes(next.appearance.theme)) {
     next.appearance.theme = current.appearance.theme;
   }
 

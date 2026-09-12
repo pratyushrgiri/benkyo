@@ -42,7 +42,7 @@
 
         message.textContent = 'Account created. Please log in.';
         setTimeout(() => {
-          window.location.href = '/login.html';
+          window.location.href = 'login.html';
         }, 700);
       } catch (error) {
         message.textContent = error.message;

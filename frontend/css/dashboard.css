@@ -1,25 +1,72 @@
 .hero {
   text-align: center;
+  border: none;
+  padding: 1.5rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero #welcome {
+  margin-bottom: 1.5rem;
+}
+
+/* Streak badge — the "inverted for emphasis" treatment stands in for color */
+.streak-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--foreground);
+  color: var(--background);
+  border: var(--thick);
+  padding: 2rem 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.streak-badge #current-streak {
+  font-family: var(--font-display);
+  font-size: var(--text-7xl);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.streak-badge .streak-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--background);
 }
 
 .focus-today {
-  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+  margin-bottom: 2rem;
 }
 
-.progress-bar {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  height: 14px;
-  overflow: hidden;
+.hero .btn-cta {
+  align-self: center;
 }
 
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: var(--success);
-  transition: width 0.3s ease;
+/* Section headings shared by stats/activity/achievements ----------------- */
+
+.activity-card h3,
+.stats-card h3,
+.achievements-card h3 {
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
 }
+
+/* Activity — monochrome ledger, intensity read through opacity ---------- */
 
 .activity-graph {
   display: grid;
@@ -30,25 +77,86 @@
 .day-cell {
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 3px;
-  border: 1px solid var(--border);
+  border-radius: 0;
+  border: var(--hairline);
+  background: var(--foreground);
+  padding: 0;
+  cursor: default;
 }
 
-.level-0 { background: transparent; }
-.level-1 { background: #9be9a8; }
-.level-2 { background: #40c463; }
-.level-3 { background: #30a14e; }
-.level-4 { background: #216e39; }
+.level-0 { opacity: 0.04; }
+.level-1 { opacity: 0.3; }
+.level-2 { opacity: 0.55; }
+.level-3 { opacity: 0.78; }
+.level-4 { opacity: 1; }
 
-:root[data-theme='dark'] .level-1 { background: #0e4429; }
-:root[data-theme='dark'] .level-2 { background: #006d32; }
-:root[data-theme='dark'] .level-3 { background: #26a641; }
-:root[data-theme='dark'] .level-4 { background: #39d353; }
+/* Stats -------------------------------------------------------------- */
+
+.stats-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stats-card li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: var(--hairline);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stats-card li:last-child {
+  border-bottom: none;
+}
+
+.stats-card li span {
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: var(--text-base);
+}
+
+/* Achievements ---------------------------------------------------------- */
+
+#achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#achievements-list li {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: var(--hairline);
+}
+
+#achievements-list li:last-child {
+  border-bottom: none;
+}
+
+#achievements-list li.locked {
+  color: var(--muted-foreground);
+}
+
+#achievements-list li .mark {
+  background: transparent;
+}
+
+#achievements-list li.unlocked .mark {
+  background: var(--foreground);
+}
 
 @media (max-width: 600px) {
-  .top-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+  .streak-badge {
+    padding: 1.5rem 2rem;
+  }
+
+  .streak-badge #current-streak {
+    font-size: var(--text-6xl);
   }
 }

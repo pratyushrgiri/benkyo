@@ -5,5 +5,12 @@
     "email": "demo@example.com",
     "password": "$2b$10$hX9oSTMXG9zDStqib1hUP.fpFYMuFZJOUSDGzOxBKIvlYQhqhbRoe",
     "createdAt": "2026-09-11T15:20:30.289Z"
+  },
+  {
+    "id": "user_360cf7e6-bfd5-4107-ab43-ac47840e5197",
+    "username": "pratyush",
+    "email": "pratyushrajgireee@gmail.com",
+    "password": "$2b$10$l8cAC4Tb3qztwOYBrgvCgeXC02NazRA1x6gfn17YeNn8geUhNGg3m",
+    "createdAt": "2026-09-11T15:51:40.203Z"
   }
 ]
