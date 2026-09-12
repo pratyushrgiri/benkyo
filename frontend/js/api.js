@@ -1,5 +1,5 @@
 (function initApi() {
-  const API_BASE = window.BENKYO_API_URL || 'http://localhost:5000';
+  const API_BASE = "https://benkyo-hx9n.onrender.com";
 
   function token() {
     return localStorage.getItem('benkyo_token');
